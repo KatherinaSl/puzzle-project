@@ -1,5 +1,6 @@
 import { User } from '../../../../data/user';
 import createHTMLElement from '../../../util/element-creator';
+import GamePageView from '../play/gamePage';
 import './startScreen.scss';
 
 class StartScreenView {
@@ -29,6 +30,12 @@ class StartScreenView {
         const p = document.createElement('p');
         button.id = 'startButton';
         p.textContent = 'START';
+
+        p.addEventListener('click', () => {
+            document.querySelector('.welcoming-block')?.remove();
+            const gamePage = new GamePageView();
+            gamePage.create();
+        });
 
         button.append(p);
         return button;
