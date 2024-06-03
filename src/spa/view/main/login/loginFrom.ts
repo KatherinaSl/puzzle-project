@@ -1,5 +1,7 @@
 import './login.scss';
-import createHTMLElement from '../../../htmlUtils';
+import createHTMLElement from '../../../util/element-creator';
+import { extractUser } from '../../../../data/user';
+import UserStorage from '../../../util/userStorage';
 
 class LoginFormView {
     private WELCOME_PHRASE = 'Welcome!';
@@ -8,7 +10,34 @@ class LoginFormView {
 
     private SURNAME_PLACEHOLDER = 'Please, enter your surname';
 
-    constructor(private submitHandler: (event: SubmitEvent) => void) {}
+    public create() {
+        const div = createHTMLElement('div', 'form-box');
+        const form = createHTMLElement('form') as HTMLFormElement;
+        form.action = '';
+        const h2 = createHTMLElement('h2');
+        h2.textContent = this.WELCOME_PHRASE;
+        const firstInput = this.createInput(
+            'firstName',
+            this.NAME_PLACEHOLDER,
+            this.getRequirements('first name', 3),
+            '[A-Z][a-zA-Z\\-]{2,}'
+        );
+        const secondInput = this.createInput(
+            'surname',
+            this.SURNAME_PLACEHOLDER,
+            this.getRequirements('surname', 4),
+            '[A-Z][a-zA-Z\\-]{3,}'
+        );
+        const button = createHTMLElement('input', 'submit') as HTMLInputElement;
+        button.type = 'submit';
+        button.value = 'Log in';
+        form.append(h2, firstInput, secondInput, button);
+
+        div.append(form);
+
+        document.querySelector('main')?.childNodes.forEach((node) => node.remove());
+        document.querySelector('main')?.append(div);
+    }
 
     private getRequirements(name: string, minLength: number): string {
         const firstRequirement = `Your ${name} should consist of only English alphabet letters.`;
@@ -36,32 +65,10 @@ class LoginFormView {
         return divInput;
     }
 
-    public create() {
-        const div = createHTMLElement('div', 'form-box');
-        const form = createHTMLElement('form') as HTMLFormElement;
-        form.action = '';
-        const h2 = createHTMLElement('h2');
-        h2.textContent = this.WELCOME_PHRASE;
-        const firstInput = this.createInput(
-            'firstName',
-            this.NAME_PLACEHOLDER,
-            this.getRequirements('first name', 3),
-            '[A-Z][a-zA-Z\\-]{2,}'
-        );
-        const secondInput = this.createInput(
-            'surname',
-            this.SURNAME_PLACEHOLDER,
-            this.getRequirements('surname', 4),
-            '[A-Z][a-zA-Z\\-]{3,}'
-        );
-        const button = createHTMLElement('input', 'submit') as HTMLInputElement;
-        button.type = 'submit';
-        button.value = 'Log in';
-        form.addEventListener('submit', this.submitHandler);
-        form.append(h2, firstInput, secondInput, button);
-
-        div.append(form);
-        document.querySelector('main')?.append(div);
+    public submitHandler(event: SubmitEvent, userStorage: UserStorage) {
+        const data = new FormData(event.target as HTMLFormElement);
+        const user = extractUser(data);
+        userStorage.save(user);
     }
 }
 
