@@ -1,5 +1,5 @@
 import UserStorage from './util/userStorage';
-import HeaderView from './view/main/header/header';
+import HeaderView from './view/header/header';
 import LoginFormView from './view/main/login/loginFrom';
 import StartScreenView from './view/main/start/startScreen';
 
