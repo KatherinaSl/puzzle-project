@@ -1,8 +1,9 @@
-$button-color: #d9c700;
+$button-color: #eb8d22;
 $input-border: 2px solid #eb8d22;
 $text-color: #000000;
 $invalid-form-border: 2px solid rgba(235, 88, 113, 0.8);
 $requirements-color: #ff0000;
+$button-hover: #ffffff;
 
 .form-box {
     display: flex;
@@ -79,8 +80,12 @@ $requirements-color: #ff0000;
         justify-content: center;
         border-radius: 20px;
         background-color: $button-color;
-        border: 1px solid $button-color;
+        border: $input-border;
         cursor: pointer;
+
+        &:hover {
+            background-color: $button-hover;
+        }
     }
 
     input[type='submit'] {

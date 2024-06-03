@@ -1,0 +1,56 @@
+$background: #ffffff;
+$logo-color: #556271;
+$hover-color: #eb8d22;
+$text-color: #000000;
+
+header {
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    margin: 0 auto;
+    justify-content: space-between;
+    background: $background;
+
+    .logo {
+        align-self: center;
+
+        p {
+            color: $logo-color;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.5em;
+        }
+    }
+
+    .logout {
+        padding: 10px 15px;
+        align-self: center;
+        text-align: center;
+
+        a {
+            text-decoration: none;
+            color: $text-color;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-content: center;
+            width: 100%;
+            text-align: center;
+
+            ion-icon {
+                font-size: 2em;
+            }
+
+            span {
+                &:first-of-type {
+                    position: relative;
+                    display: block;
+                }
+            }
+
+            &:hover {
+                color: $hover-color;
+            }
+        }
+    }
+}
