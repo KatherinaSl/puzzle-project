@@ -12,6 +12,10 @@ class UserStorage {
     public isAuthorized(): boolean {
         return !!localStorage.userInfo;
     }
+
+    public get(): User {
+        return JSON.parse(localStorage.getItem('userInfo') as string) as User;
+    }
 }
 
 export default UserStorage;

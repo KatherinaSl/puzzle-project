@@ -35,7 +35,9 @@ class LoginFormView {
 
         div.append(form);
 
-        document.querySelector('main')?.childNodes.forEach((node) => node.remove());
+        document.querySelector('.welcoming-block')?.remove();
+        document.querySelector('header')?.remove();
+
         document.querySelector('main')?.append(div);
     }
 

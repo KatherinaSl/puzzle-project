@@ -1,49 +1,55 @@
+$button-color: #eb8d22;
+$button-border: 2px solid #eb8d22;
+$text-color: #000000;
+$button-hover: #ffffff;
+
 .welcoming-block {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     backdrop-filter: blur(10px);
-
     align-items: center;
-    height: 100vh;
+    height: 90vh;
     width: 100%;
 
     h2 {
-        color: #000000;
+        color: $text-color;
         text-align: center;
-        font-size: 50px;
-        padding: 20px 0 150px 0;
+        font-size: 3em;
+        padding: 50px {
+            bottom: 150px;
+        }
     }
 
-    .logout {
-        width: 10%;
+    .description {
+        display: flex;
+        justify-content: space-evenly;
+        padding-top: 50px;
+    }
+
+    .description-rules {
+        width: 50%;
+        font-size: 2em;
+    }
+
+    .description-start {
         align-self: center;
-        margin: 10px 0;
-        text-align: center;
-        background: #fff;
-        border-radius: 15px;
 
-        a {
-            text-decoration: none;
-            color: #556271;
-            display: flex;
-            flex-flow: column;
+        button {
+            margin: 5px;
             justify-content: center;
-            align-content: center;
-            width: 100%;
-            text-align: center;
-
-            ion-icon {
-                padding-top: 10px;
-                font-size: 33px;
-                --ionicon-stroke-width: 25px;
+            border-radius: 50px;
+            background-color: $button-color;
+            border: $button-border;
+            width: 150%;
+            cursor: pointer;
+            p {
+                margin: 10px;
+                font-size: 1.5em;
             }
 
-            span {
-                &:first-of-type {
-                    position: relative;
-                    display: block;
-                }
+            &:hover {
+                background-color: $button-hover;
             }
         }
     }
