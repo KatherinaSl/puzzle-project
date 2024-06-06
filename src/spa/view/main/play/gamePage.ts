@@ -13,6 +13,9 @@ class GamePageView {
         const scrambledWords = getSentences();
         scrambledWords.forEach((word, index) => {
             const wordDiv = createHTMLElement('div', 'scrambledWord');
+            const wordLength = word.split('').length;
+            console.log(wordLength);
+            wordDiv.style.minWidth = `${wordLength * 2}%`;
             wordDiv.id = `${index}`;
             wordDiv.textContent = word;
             wordDiv.addEventListener('click', this.cardHandler);

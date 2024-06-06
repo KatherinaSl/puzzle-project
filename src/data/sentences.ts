@@ -29,5 +29,5 @@ export default function getSentences(): string[] {
         sentenceCopy.scrambledWords = arrayOfWords;
         return sentence;
     });
-    return arrayOfSentences[0].scrambledWords!;
+    return arrayOfSentences[6].scrambledWords!;
 }
