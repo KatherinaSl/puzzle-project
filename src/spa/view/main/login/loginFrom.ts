@@ -10,7 +10,8 @@ class LoginFormView {
 
     private SURNAME_PLACEHOLDER = 'Please, enter your surname';
 
-    public create() {
+    public create(): Node {
+        const main = createHTMLElement('main');
         const div = createHTMLElement('div', 'form-box');
         const form = createHTMLElement('form') as HTMLFormElement;
         form.action = '';
@@ -35,10 +36,11 @@ class LoginFormView {
 
         div.append(form);
 
-        document.querySelector('.welcoming-block')?.remove();
+        document.querySelector('main')?.remove();
         document.querySelector('header')?.remove();
 
-        document.querySelector('main')?.append(div);
+        main.append(div);
+        return main;
     }
 
     private getRequirements(name: string, minLength: number): string {

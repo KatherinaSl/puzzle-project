@@ -2,7 +2,8 @@ import createHTMLElement from '../../util/element-creator';
 import './header.scss';
 
 class HeaderView {
-    public create() {
+    public create(): Node {
+        const header = createHTMLElement('header');
         const logo = createHTMLElement('div', 'logo');
         const h1Tag = createHTMLElement('p');
         h1Tag.textContent = 'RSS Puzzle';
@@ -20,7 +21,8 @@ class HeaderView {
         a.append(spanIconName, spanDisplayName);
         div.append(a);
 
-        document.querySelector('header')?.append(logo, div);
+        header.append(logo, div);
+        return header;
     }
 }
 
