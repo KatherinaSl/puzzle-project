@@ -4,14 +4,16 @@ import GamePageView from '../play/gamePage';
 import './startScreen.scss';
 
 class StartScreenView {
-    public create(user: User) {
+    public create(user: User): Node {
+        const main = createHTMLElement('main');
         const welcomingBlock = createHTMLElement('div', 'welcoming-block');
         const h2Tag = createHTMLElement('h2');
         h2Tag.textContent = `Welcome, ${user.firstName} ${user.surname}!`;
         welcomingBlock.append(h2Tag, this.buildDescriptionArea());
 
-        document.querySelector('.form-box')?.remove();
-        document.querySelector('main')?.append(welcomingBlock);
+        document.querySelector('main')?.remove();
+        main.append(welcomingBlock);
+        return main;
     }
 
     private buildDescriptionArea(): HTMLElement {
@@ -32,9 +34,9 @@ class StartScreenView {
         p.textContent = 'START';
 
         p.addEventListener('click', () => {
-            document.querySelector('.welcoming-block')?.remove();
+            document.querySelector('main')?.remove();
             const gamePage = new GamePageView();
-            gamePage.create();
+            document.querySelector('body')!.append(gamePage.create());
         });
 
         button.append(p);
