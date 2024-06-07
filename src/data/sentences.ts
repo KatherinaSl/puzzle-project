@@ -19,7 +19,7 @@ function shuffleArray(array: string[]): string[] {
     return shuffledArray;
 }
 
-export default function getSentences(): string[] {
+export function getScrambledSentence(): string[] {
     let arrayOfSentences = collection.rounds[0].words as Sentence[];
 
     arrayOfSentences = arrayOfSentences.map((sentence) => {
@@ -30,4 +30,10 @@ export default function getSentences(): string[] {
         return sentence;
     });
     return arrayOfSentences[6].scrambledWords!;
+}
+
+export function getSentenseLength(words: string[]): number {
+    return words.reduce((element: string, currentStr: string): string => {
+        return element + currentStr;
+    }).length;
 }

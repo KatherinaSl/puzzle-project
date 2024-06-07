@@ -3,7 +3,6 @@ $card-color: #eb8d22;
 
 .playground {
     height: 90vh;
-    transition: background-image 0.2s ease-in-out;
 
     display: flex;
     flex-direction: column;
@@ -14,7 +13,6 @@ $card-color: #eb8d22;
     .resultBlock,
     .dataStorageBlock {
         min-width: 50%;
-        // max-width: 80%;
         background-color: $background-color;
         margin: 10px;
     }
@@ -33,13 +31,12 @@ $card-color: #eb8d22;
     .dataStorageBlock {
         height: 10vh;
         text-align: center;
-        justify-content: space-around;
         display: flex;
     }
 }
 
 .scrambledWord {
-    transition: translate 1s ease-in-out;
+    transition: all 1s ease-in-out;
     font-size: calc(13px + 0.5vw);
     padding-top: 15px;
     border: 1px solid black;
