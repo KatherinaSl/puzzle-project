@@ -1,4 +1,4 @@
-import getSentences from '../../../../data/sentences';
+import { getScrambledSentence, getSentenseLength } from '../../../../data/sentences';
 import createHTMLElement from '../../../util/element-creator';
 import './gamePage.scss';
 
@@ -10,52 +10,56 @@ class GamePageView {
         const firtsRow = createHTMLElement('div', 'row');
         result.append(firtsRow);
         const storage = createHTMLElement('div', 'dataStorageBlock');
-        const scrambledWords = getSentences();
-        scrambledWords.forEach((word, index) => {
-            const wordDiv = createHTMLElement('div', 'scrambledWord');
-            const wordLength = word.split('').length;
-            console.log(wordLength);
-            wordDiv.style.minWidth = `${wordLength * 2}%`;
-            wordDiv.id = `${index}`;
-            wordDiv.textContent = word;
-            wordDiv.addEventListener('click', this.cardHandler);
+        const scrambledWords = getScrambledSentence();
+        const sentenceLength = getSentenseLength(scrambledWords);
 
-            wordDiv.addEventListener('animationend', () => {
-                console.log('animationend1');
-                wordDiv.style.transform = 'none';
-                const resultBlock = document.querySelector('.row') as HTMLElement;
-                resultBlock.append(wordDiv);
-            });
-
+        scrambledWords.forEach((word) => {
+            const wordDiv = this.createWordCard(word, sentenceLength);
             storage.append(wordDiv);
         });
-
         div.append(result, storage);
         main.append(div);
         return main;
     }
 
-    private cardHandler(event: MouseEvent) {
-        const card = event.target as HTMLElement;
-        const resultBlock = document.querySelector('.row') as HTMLElement;
-        const cardRect = card.getBoundingClientRect();
-        const resultRect = resultBlock.getBoundingClientRect();
-        console.log(cardRect);
-        console.log(resultRect);
-        const xposition = resultRect.right - resultRect.right;
-        const yposition = resultRect.top - cardRect.top;
+    private createWordCard(word: string, sentenceLength: number) {
+        const wordDiv = createHTMLElement('div', 'scrambledWord');
+        const wordLength = word.length;
+        wordDiv.style.width = `${(wordLength / sentenceLength) * 100}%`;
+        wordDiv.textContent = word;
+        const handler = this.cardHandler.bind(this);
+        wordDiv.addEventListener('click', (event) => {
+            handler(event, 'dataStorageBlock', 'row');
+        });
+        wordDiv.addEventListener('click', (event) => {
+            handler(event, 'row', 'dataStorageBlock');
+        });
+        return wordDiv;
+    }
 
-        card.style.transform = `translate(${xposition}px,${yposition}px)`;
+    private cardHandler(event: MouseEvent, parentClass: string, targetClass: string) {
+        if (((event.target as HTMLElement).parentNode as HTMLElement).classList.contains(parentClass)) {
+            const target = document.querySelector(`.${targetClass}`) as HTMLElement;
+            const card = event.target as HTMLElement;
 
-        card.addEventListener(
-            'transitionend',
-            () => {
-                console.log('transitionend');
-                card.style.transform = 'none';
-                resultBlock.append(card);
-            },
-            { once: true }
-        );
+            const lastCardRect = (target.lastChild as HTMLElement)?.getBoundingClientRect();
+            const cardRect = card.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const xposition = (lastCardRect ? lastCardRect.right : targetRect.left) - cardRect.left;
+            const yposition = targetRect.top - cardRect.top;
+
+            card.style.transform = `translate(${xposition}px,${yposition}px)`;
+            card.style.transition = 'all 1s ease-in-out';
+
+            card.addEventListener(
+                'transitionend',
+                () => {
+                    card.style.transform = 'none';
+                    target.append(card);
+                },
+                { once: true }
+            );
+        }
     }
 }
 
