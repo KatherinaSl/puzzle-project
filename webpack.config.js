@@ -41,7 +41,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(jpg|png|svg|jpeg|gif)$/,
+                test: /\.(jpg|jpeg|gif)$/,
                 type: 'asset/resource',
             },
             {
@@ -51,6 +51,13 @@ module.exports = {
             {
                 test: /\.ts$/i,
                 use: 'ts-loader',
+            },
+            {
+                test: /\.(png|jp2|webp)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]',
+                },
             },
         ],
     },

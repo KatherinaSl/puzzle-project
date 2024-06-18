@@ -2,6 +2,7 @@ import UserStorage from './util/userStorage';
 import HeaderView from './view/header/header';
 import LoginFormView from './view/main/login/loginFrom';
 import StartScreenView from './view/main/start/startScreen';
+// import backgroundImage from '../assets/img/background2.png';
 
 class App {
     private loginView: LoginFormView | null;
@@ -20,11 +21,6 @@ class App {
         this.startScreenView = null;
         this.headerView = null;
     }
-
-    // public create() {
-    //     const main = createHTMLElement('main');
-    //     const header = createHTMLElement('header');
-    // }
 
     public start() {
         if (this.userStorage.isAuthorized()) {
@@ -50,7 +46,6 @@ class App {
         this.headerView = new HeaderView();
         document.querySelector('body')!.append(this.headerView.create());
         this.startScreenView = new StartScreenView();
-        // this.startScreenView.create(this.userStorage.get());
         document.querySelector('body')!.append(this.startScreenView.create(this.userStorage.get()));
         document.querySelector('.logout')?.addEventListener('click', () => {
             this.userStorage.delete();

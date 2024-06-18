@@ -1,4 +1,5 @@
 import createHTMLElement from '../../util/element-creator';
+import icon from '../../../assets/img/exit.png';
 import './header.scss';
 
 class HeaderView {
@@ -10,16 +11,9 @@ class HeaderView {
         logo.append(h1Tag);
 
         const div = createHTMLElement('div', 'logout');
-        const a = createHTMLElement('a');
-        a.setAttribute('href', '#');
-        const spanIconName = createHTMLElement('span');
-        const icon = createHTMLElement('ion-icon');
-        icon.setAttribute('name', 'log-out-outline');
-        spanIconName.append(icon);
-        const spanDisplayName = createHTMLElement('span');
-        spanDisplayName.textContent = 'Log out';
-        a.append(spanIconName, spanDisplayName);
-        div.append(a);
+        const logoutIcon = createHTMLElement('img') as HTMLImageElement;
+        logoutIcon.src = icon as string;
+        div.append(logoutIcon);
 
         header.append(logo, div);
         return header;
