@@ -1,0 +1,89 @@
+{
+    "rounds": [
+        {
+            "levelData": {
+                "id": "1_01",
+                "name": "Stag Hunt",
+                "imageSrc": "level1/deerhunt.jpg",
+                "cutSrc": "level1/cut/deerhunt.jpg",
+                "author": "Niccolò dell'",
+                "year": "1550-52"
+            },
+            "words": [
+                {
+                    "audioExample": "files/01_0001_example.mp3",
+                    "textExample": "The students agree they have too much homework",
+                    "textExampleTranslate": "Студенты согласны, что у них слишком много домашней работы",
+                    "id": 1,
+                    "word": "agree",
+                    "wordTranslate": "согласна"
+                },
+                {
+                    "audioExample": "files/01_0003_example.mp3",
+                    "textExample": "They arrived at school at 7 a.m",
+                    "textExampleTranslate": "Они прибыли в школу в 7 часов утра",
+                    "id": 3,
+                    "word": "arrive",
+                    "wordTranslate": "прибыть"
+                }
+            ]
+        },
+        {
+            "levelData": {
+                "id": "1_02",
+                "name": "Deer beside a Lake",
+                "imageSrc": "level1/deerlake.jpg",
+                "cutSrc": "level1/cut/deerlake.jpg",
+                "author": "Carl Frederik",
+                "year": "1888"
+            },
+            "words": [
+                {
+                    "audioExample": "files/01_0012_example.mp3",
+                    "textExample": "I will invite my friends to my birthday party",
+                    "textExampleTranslate": "Я приглашаю своих друзей на мой день рождения",
+                    "id": 12,
+                    "word": "invite",
+                    "wordTranslate": "пригласить"
+                },
+                {
+                    "audioExample": "files/01_0013_example.mp3",
+                    "textExample": "I love my family very much",
+                    "textExampleTranslate": "Я очень люблю свою семью",
+                    "id": 13,
+                    "word": "love",
+                    "wordTranslate": "любовь"
+                }
+            ]
+        },
+        {
+            "levelData": {
+                "id": "1_03",
+                "name": "Country Road with Cypresses",
+                "imageSrc": "level1/abbati2.jpg",
+                "cutSrc": "level1/cut/abbati2.jpg",
+                "author": "ABBATI, Giuseppe",
+                "year": "1860"
+            },
+            "words": [
+                {
+                    "audioExample": "files/02_0022_example.mp3",
+                    "textExample": "The boy approached his school",
+                    "textExampleTranslate": "Мальчик приблизился к своей школе",
+                    "id": 22,
+                    "word": "approach",
+                    "wordTranslate": "подходить"
+                },
+                {
+                    "audioExample": "files/02_0023_example.mp3",
+                    "textExample": "The baby carefully climbed down the stairs",
+                    "textExampleTranslate": "Малыш осторожно спускался по лестнице",
+                    "id": 23,
+                    "word": "carefully",
+                    "wordTranslate": "внимательно"
+                }
+            ]
+        }
+    ],
+    "roundsCount": 3
+}

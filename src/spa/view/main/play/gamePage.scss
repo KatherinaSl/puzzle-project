@@ -6,7 +6,7 @@ $card-color: #eb8d22;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
 
@@ -21,7 +21,7 @@ $card-color: #eb8d22;
         height: 50vh;
 
         .row {
-            height: 10vh;
+            height: 5vh;
             text-align: center;
             justify-content: flex-start;
             display: flex;
@@ -29,16 +29,18 @@ $card-color: #eb8d22;
     }
 
     .dataStorageBlock {
-        height: 10vh;
+        height: 5vh;
         text-align: center;
         display: flex;
     }
 }
 
 .scrambledWord {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 1s ease-in-out;
     font-size: calc(13px + 0.5vw);
-    padding-top: 15px;
     border: 1px solid black;
     background-color: $card-color;
     opacity: 0.8;
