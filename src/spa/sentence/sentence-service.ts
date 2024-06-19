@@ -19,13 +19,14 @@ class SentenceService {
         return sentence;
     }
 
-    public isValid(sentenceId: number, roundId: string, arrayOfWordsToCheck: string[]): boolean {
+    public isValidLength(sentenceId: number, roundId: string, arrayOfWordsToCheck: string[]): boolean {
         const sentence = this.getSentence(sentenceId, roundId);
         const arrayOfWords = sentence.textExample.split(' ');
         if (arrayOfWordsToCheck.length !== arrayOfWords.length) {
             return false;
         }
-        return arrayOfWordsToCheck.every((word, index) => word === arrayOfWords[index]);
+        return true;
+        // return arrayOfWordsToCheck.every((word, index) => word === arrayOfWords[index]);
     }
 
     private getScrambledSentence(sentence: Sentence): string[] {
@@ -34,7 +35,7 @@ class SentenceService {
         return arrayOfWords;
     }
 
-    private getSentence(sentenceId: number, roundId: string): Sentence {
+    public getSentence(sentenceId: number, roundId: string): Sentence {
         const round = (collection.rounds as Round[]).find((element) => roundId === element.levelData.id);
 
         return round!.words.find((element) => sentenceId === element.id)!;

@@ -4,6 +4,7 @@ import createHTMLElement from '../../../util/element-creator';
 import './gamePage.scss';
 import SentenceService from '../../../sentence/sentence-service';
 import WordCardView from './card/card';
+import CheckButton from './buttons/check-button';
 
 class GamePageView {
     private sentenceService: SentenceService;
@@ -20,16 +21,25 @@ class GamePageView {
         const result = createHTMLElement('div', 'resultBlock');
         const storage = createHTMLElement('div', 'dataStorageBlock');
         storage.id = 'storage';
+        const toolBar = createHTMLElement('div', 'toolbar');
+
+        const checkButton = new CheckButton();
+        const buttonCheck = checkButton.create();
+        buttonCheck.style.visibility = 'hidden';
+
         const continueButton = new ContinueButton();
-        const button = continueButton.create();
-        button.addEventListener('click', this.buttonClickHandler.bind(this));
+        const buttonContinue = continueButton.create();
+
+        buttonContinue.addEventListener('click', this.buttonClickHandler.bind(this));
+
         const round = this.sentenceService.getNextRound();
         this.roundId = round.levelData.id;
         const firtsRow = this.createNextSentence(storage);
         if (firtsRow) {
             result.append(firtsRow);
         }
-        div.append(result, storage, button);
+        toolBar.append(buttonContinue, buttonCheck);
+        div.append(result, storage, toolBar);
         main.append(div);
         return main;
     }

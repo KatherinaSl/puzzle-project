@@ -1,6 +1,7 @@
 import { Sentence } from '../../../../../data/data';
 import SentenceService from '../../../../sentence/sentence-service';
 import createHTMLElement from '../../../../util/element-creator';
+import './card.scss';
 
 class WordCardView {
     constructor(
@@ -41,19 +42,41 @@ class WordCardView {
             card.style.transform = `translate(${xposition}px,${yposition}px)`;
             card.style.transition = 'all 1s ease-in-out';
 
+            this.rowElement.querySelectorAll('.scrambledWord').forEach((element) => {
+                element.classList.remove('incorrectWord');
+            });
+
+            (document.querySelector('.check-button') as HTMLElement).style.visibility = 'hidden';
+
             card.addEventListener(
                 'transitionend',
                 () => {
-                    const button = document.querySelector('.continue-button') as HTMLButtonElement;
+                    const continueButton = document.querySelector('.continue-button') as HTMLButtonElement;
                     card.style.transform = 'none';
                     target.append(card);
                     const arrayOfWords = [...document.querySelector('.resultBlock')!.lastChild!.childNodes].map(
                         (element) => element.textContent!
                     );
-                    if (this.sentenceService.isValid(sentenceId, this.roundId, arrayOfWords)) {
-                        button.disabled = false;
+                    if (this.sentenceService.isValidLength(sentenceId, this.roundId, arrayOfWords)) {
+                        const buttonCheck = document.querySelector('.check-button') as HTMLElement;
+                        buttonCheck.style.visibility = 'visible';
+                        const sentence = this.sentenceService.getSentence(sentenceId, this.roundId);
+                        const arrayOfWordsToCheck = sentence.textExample.split(' ');
+
+                        buttonCheck.addEventListener('click', () => {
+                            this.rowElement.querySelectorAll('.scrambledWord').forEach((word, index) => {
+                                if (word.textContent !== arrayOfWordsToCheck[index]) {
+                                    word.classList.add('incorrectWord');
+                                }
+                            });
+                        });
+
+                        if (arrayOfWords.every((word, index) => word === arrayOfWordsToCheck[index]) === true) {
+                            continueButton.disabled = false;
+                            buttonCheck.style.visibility = 'hidden';
+                        }
                     } else {
-                        button.disabled = true;
+                        continueButton.disabled = true;
                     }
                 },
                 { once: true }
