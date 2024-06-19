@@ -1,6 +1,22 @@
-.incorrectWord {
-    border: 1px solid #e01e2b {
-        top: 2px solid #e01e2b;
-        bottom: 2px solid #e01e2b;
+$card-color: #eb8d22;
+$border: solid black;
+$incorrect-border: 2px solid #e01e2b;
+
+.scrambledWord {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 1s ease-in-out;
+    font-size: calc(13px + 0.5vw);
+    border: 1px $border;
+    background-color: $card-color;
+    cursor: pointer;
+
+    &:hover {
+        border: 3px $border;
     }
+}
+
+.incorrectWord {
+    border: $incorrect-border;
 }

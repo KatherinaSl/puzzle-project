@@ -2,7 +2,7 @@ import createHTMLElement from '../../util/element-creator';
 import icon from '../../../assets/img/exit.png';
 import './header.scss';
 
-class HeaderView {
+export default class HeaderView {
     public create(): Node {
         const header = createHTMLElement('header');
         const logo = createHTMLElement('div', 'logo');
@@ -13,11 +13,10 @@ class HeaderView {
         const div = createHTMLElement('div', 'logout');
         const logoutIcon = createHTMLElement('img') as HTMLImageElement;
         logoutIcon.src = icon as string;
+
         div.append(logoutIcon);
 
         header.append(logo, div);
         return header;
     }
 }
-
-export default HeaderView;

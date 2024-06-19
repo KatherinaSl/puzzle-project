@@ -51,9 +51,10 @@ class WordCardView {
             card.addEventListener(
                 'transitionend',
                 () => {
-                    const continueButton = document.querySelector('.continue-button') as HTMLButtonElement;
                     card.style.transform = 'none';
                     target.append(card);
+
+                    const continueButton = document.querySelector('.continue-button') as HTMLButtonElement;
                     const arrayOfWords = [...document.querySelector('.resultBlock')!.lastChild!.childNodes].map(
                         (element) => element.textContent!
                     );

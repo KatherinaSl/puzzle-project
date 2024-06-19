@@ -1,7 +1,7 @@
 import { Round, Sentence, shuffleArray } from '../../data/data';
 import collection from '../../data/backup.json';
 
-class SentenceService {
+export default class SentenceService {
     private sentenceIndex: number = 0;
 
     private roundIndex: number = 0;
@@ -26,7 +26,6 @@ class SentenceService {
             return false;
         }
         return true;
-        // return arrayOfWordsToCheck.every((word, index) => word === arrayOfWords[index]);
     }
 
     private getScrambledSentence(sentence: Sentence): string[] {
@@ -54,5 +53,3 @@ class SentenceService {
         return round;
     }
 }
-
-export default SentenceService;

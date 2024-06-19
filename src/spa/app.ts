@@ -2,9 +2,8 @@ import UserStorage from './util/userStorage';
 import HeaderView from './view/header/header';
 import LoginFormView from './view/main/login/loginFrom';
 import StartScreenView from './view/main/start/startScreen';
-// import backgroundImage from '../assets/img/background2.png';
 
-class App {
+export default class App {
     private loginView: LoginFormView | null;
 
     private userStorage;
@@ -15,8 +14,6 @@ class App {
 
     constructor() {
         this.userStorage = new UserStorage();
-        // this.loginView = new LoginFormView();
-        // this.startScreenView = new StartScreenView();
         this.loginView = null;
         this.startScreenView = null;
         this.headerView = null;
@@ -53,4 +50,3 @@ class App {
         });
     }
 }
-export default App;

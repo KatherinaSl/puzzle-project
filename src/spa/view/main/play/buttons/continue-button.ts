@@ -2,7 +2,7 @@ import createHTMLElement from '../../../../util/element-creator';
 import './button.scss';
 import rightArrow from '../../../../../assets/img/right-arrow.png';
 
-class ContinueButton {
+export default class ContinueButton {
     public create(): HTMLButtonElement {
         const button = createHTMLElement('button', 'continue-button') as HTMLButtonElement;
         button.disabled = true;
@@ -15,5 +15,3 @@ class ContinueButton {
         return button;
     }
 }
-
-export default ContinueButton;

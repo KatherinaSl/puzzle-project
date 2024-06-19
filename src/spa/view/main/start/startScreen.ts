@@ -3,7 +3,7 @@ import createHTMLElement from '../../../util/element-creator';
 import GamePageView from '../play/gamePage';
 import './startScreen.scss';
 
-class StartScreenView {
+export default class StartScreenView {
     public create(user: User): Node {
         const main = createHTMLElement('main');
         const welcomingBlock = createHTMLElement('div', 'welcoming-block');
@@ -43,5 +43,3 @@ class StartScreenView {
         return button;
     }
 }
-
-export default StartScreenView;

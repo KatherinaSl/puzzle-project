@@ -1,12 +1,13 @@
 /* eslint-disable no-param-reassign */
 import ContinueButton from './buttons/continue-button';
 import createHTMLElement from '../../../util/element-creator';
-import './gamePage.scss';
 import SentenceService from '../../../sentence/sentence-service';
 import WordCardView from './card/card';
 import CheckButton from './buttons/check-button';
+import './card/card.scss';
+import './gamePage.scss';
 
-class GamePageView {
+export default class GamePageView {
     private sentenceService: SentenceService;
 
     private roundId: string = '';
@@ -89,5 +90,3 @@ class GamePageView {
         }
     }
 }
-
-export default GamePageView;
