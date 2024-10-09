@@ -3,7 +3,10 @@ import createHTMLElement from '../../../util/element-creator';
 import GamePageView from '../play/gamePage';
 import './startScreen.scss';
 
-class StartScreenView {
+export default class StartScreenView {
+    private GAME_RULES =
+        "RSS Puzzle is an interactive mini-game aimed at enhancing English language skills. Players assemble sentences from jumbled words, inspired by Lingualeo's Phrase Constructor training. The game integrates various levels of difficulty, hint options, and a unique puzzle-like experience with artwork.";
+
     public create(user: User): Node {
         const main = createHTMLElement('main');
         const welcomingBlock = createHTMLElement('div', 'welcoming-block');
@@ -19,8 +22,7 @@ class StartScreenView {
     private buildDescriptionArea(): HTMLElement {
         const description = createHTMLElement('div', 'description');
         const rules = createHTMLElement('div', 'description-rules');
-        rules.textContent =
-            "RSS Puzzle is an interactive mini-game aimed at enhancing English language skills. Players assemble sentences from jumbled words, inspired by Lingualeo's Phrase Constructor training. The game integrates various levels of difficulty, hint options, and a unique puzzle-like experience with artwork.";
+        rules.textContent = this.GAME_RULES;
         const startButton = createHTMLElement('div', 'description-start');
         startButton.append(this.createButton());
         description.append(rules, startButton);
@@ -43,5 +45,3 @@ class StartScreenView {
         return button;
     }
 }
-
-export default StartScreenView;

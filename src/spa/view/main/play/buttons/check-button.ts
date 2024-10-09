@@ -1,7 +1,8 @@
 import createHTMLElement from '../../../../util/element-creator';
 import checkMark from '../../../../../assets/img/check-mark.png';
+import './buttons.scss';
 
-class CheckButton {
+export default class CheckButton {
     public create() {
         const button = createHTMLElement('button', 'check-button') as HTMLButtonElement;
 
@@ -13,5 +14,3 @@ class CheckButton {
         return button;
     }
 }
-
-export default CheckButton;

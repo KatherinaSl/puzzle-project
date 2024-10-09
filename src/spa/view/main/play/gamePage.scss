@@ -1,5 +1,4 @@
 $background-color: #ffffff;
-$card-color: #eb8d22;
 
 .playground {
     height: 90vh;
@@ -35,17 +34,3 @@ $card-color: #eb8d22;
     }
 }
 
-.scrambledWord {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 1s ease-in-out;
-    font-size: calc(13px + 0.5vw);
-    border: 1px solid black;
-    background-color: $card-color;
-    cursor: pointer;
-
-    &:hover {
-        border: 3px solid black;
-    }
-}

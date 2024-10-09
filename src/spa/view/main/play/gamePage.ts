@@ -1,12 +1,13 @@
-/* eslint-disable no-param-reassign */
 import ContinueButton from './buttons/continue-button';
 import createHTMLElement from '../../../util/element-creator';
-import './gamePage.scss';
 import SentenceService from '../../../sentence/sentence-service';
 import WordCardView from './card/card';
 import CheckButton from './buttons/check-button';
+import AutoCompleteButtonView from './buttons/auto-complite-button';
+import './gamePage.scss';
+import './card/card.scss';
 
-class GamePageView {
+export default class GamePageView {
     private sentenceService: SentenceService;
 
     private roundId: string = '';
@@ -29,16 +30,19 @@ class GamePageView {
 
         const continueButton = new ContinueButton();
         const buttonContinue = continueButton.create();
-
         buttonContinue.addEventListener('click', this.buttonClickHandler.bind(this));
+
+        const completeButton = new AutoCompleteButtonView();
+        const helpButton = completeButton.create();
 
         const round = this.sentenceService.getNextRound();
         this.roundId = round.levelData.id;
         const firtsRow = this.createNextSentence(storage);
+
         if (firtsRow) {
             result.append(firtsRow);
         }
-        toolBar.append(buttonContinue, buttonCheck);
+        toolBar.append(helpButton, buttonContinue, buttonCheck);
         div.append(result, storage, toolBar);
         main.append(div);
         return main;
@@ -54,7 +58,12 @@ class GamePageView {
         const elementId = `row${sentence!.id}`;
         row.id = elementId;
         const scrambledWords = sentence!.scrambledWords!;
+        console.log(sentence.textExample);
 
+        // document.querySelector('.help-button')?.addEventListener('click', () => {
+        //     console.log('helllooo');
+        //     localStorage.setItem('sentence', sentence.textExample);
+        // });
         scrambledWords.forEach((word) => {
             const wordCard = new WordCardView(this.sentenceService, word, sentence!, row, this.roundId);
             const wordDiv = wordCard.create();
@@ -89,5 +98,3 @@ class GamePageView {
         }
     }
 }
-
-export default GamePageView;

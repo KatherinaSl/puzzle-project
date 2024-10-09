@@ -1,6 +1,6 @@
 import { User } from '../../data/user';
 
-class UserStorage {
+export default class UserStorage {
     public delete() {
         localStorage.removeItem('userInfo');
     }
@@ -17,5 +17,3 @@ class UserStorage {
         return JSON.parse(localStorage.getItem('userInfo') as string) as User;
     }
 }
-
-export default UserStorage;

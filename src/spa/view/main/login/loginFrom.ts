@@ -3,7 +3,7 @@ import createHTMLElement from '../../../util/element-creator';
 import { extractUser } from '../../../../data/user';
 import UserStorage from '../../../util/userStorage';
 
-class LoginFormView {
+export default class LoginFormView {
     private WELCOME_PHRASE = 'Welcome!';
 
     private NAME_PLACEHOLDER = 'Please, enter your first name';
@@ -75,5 +75,3 @@ class LoginFormView {
         userStorage.save(user);
     }
 }
-
-export default LoginFormView;

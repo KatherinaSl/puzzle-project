@@ -1,7 +1,7 @@
 import { Round, Sentence, shuffleArray } from '../../data/data';
 import collection from '../../data/backup.json';
 
-class SentenceService {
+export default class SentenceService {
     private sentenceIndex: number = 0;
 
     private roundIndex: number = 0;
@@ -26,19 +26,18 @@ class SentenceService {
             return false;
         }
         return true;
-        // return arrayOfWordsToCheck.every((word, index) => word === arrayOfWords[index]);
-    }
-
-    private getScrambledSentence(sentence: Sentence): string[] {
-        let arrayOfWords = sentence.textExample.split(' ');
-        arrayOfWords = shuffleArray(arrayOfWords);
-        return arrayOfWords;
     }
 
     public getSentence(sentenceId: number, roundId: string): Sentence {
         const round = (collection.rounds as Round[]).find((element) => roundId === element.levelData.id);
 
         return round!.words.find((element) => sentenceId === element.id)!;
+    }
+
+    public getNextRound(): Round {
+        const round = collection.rounds[this.roundIndex];
+        this.roundIndex += 1;
+        return round;
     }
 
     public static getSentenseLength(words?: string[]): number {
@@ -48,11 +47,9 @@ class SentenceService {
         return length || 0;
     }
 
-    public getNextRound(): Round {
-        const round = collection.rounds[this.roundIndex];
-        this.roundIndex += 1;
-        return round;
+    private getScrambledSentence(sentence: Sentence): string[] {
+        let arrayOfWords = sentence.textExample.split(' ');
+        arrayOfWords = shuffleArray(arrayOfWords);
+        return arrayOfWords;
     }
 }
-
-export default SentenceService;
